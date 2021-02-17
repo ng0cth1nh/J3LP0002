@@ -1,0 +1,78 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 17, 2021, 10:45:22 PM
+    Author     : Vu Ngoc Thinh
+*/
+
+.container{
+    height: 70%;
+}
+
+.app{
+    height: 100%;
+    background-image: url("../image/bg_top_img.jpg");
+    background-repeat: no-repeat;
+}
+
+
+.form-container{
+    width: 280px;
+    height: 300px;
+    padding: 30px;
+}
+
+.form-top{
+    width: 100px;
+    height: 50px;
+    display: flex;
+}
+.form-top span{
+    margin: auto;
+}
+
+.form{
+    background-color: #ffffff;
+}
+
+.flight-form{
+    height: 90%;
+    font-size: 13px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+}
+
+.type{
+    display: flex;
+    background-color: #f7f7f7;
+    height: 60px;
+}
+.type__item{
+    flex: 1;
+    display: flex;
+}
+.type__item div{
+    margin: auto;
+}
+
+.form-item{
+    display: flex;
+    margin: 20px;
+    justify-content: space-between;
+}
+
+.form-label{
+    min-width: 70px;
+    flex: 1;
+}
+.option{
+    flex: 3;
+}
+#departure,#return{
+    height: 19px;
+    margin-right: 26px;
+}

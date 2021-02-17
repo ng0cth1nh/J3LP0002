@@ -1,0 +1,116 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 17, 2021, 6:01:28 PM
+    Author     : Vu Ngoc Thinh
+*/
+
+body,h1,h2,h3,h4,h5,h6,ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: sans-serif;
+    height: 100vh;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+.container{
+    margin: auto;
+    width: 960px;
+    
+}
+
+.header-container{
+    background-image: url("../image/bg_top.jpg");
+    background-repeat: no-repeat;    
+    height: 230px;
+    margin: auto;
+}
+
+.top{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.right,.left{
+    margin: 30px 30px 0 30px;
+    display: flex;
+}
+
+
+.login,.register{
+    display: grid;
+    flex: 1;
+    margin-bottom: 40px;
+}
+
+.login{
+    margin-right: 30px;
+    margin-top: 7px;
+}
+.text{
+    color: white;
+    font-size: 12px;
+
+}
+
+.slogan{
+    font-size: 20px;
+    padding-top: 66px;
+    color: white;
+    margin-left: 12px;
+}
+
+.img-logo{ 
+    color: #c4c4c4;
+}
+.login-logo{
+    width: 25px;
+    height: 25px;
+}
+
+.header{
+    display: flex;
+    height: 75px;
+    margin-left: 30px;
+
+}
+
+.header__item{
+    border-right: dotted 1px;
+    border-color: #808080;
+    background-color: linear-gradient(to top,#000000,#1a1a1c);
+    min-width: 100px;
+    height: 66px;
+    margin-top: 9px;
+    color: white;
+    font-size: 20px;
+    display: flex;
+}
+.header__item a{    
+    margin: auto;
+    font-weight: 400;
+    padding: 0 30px 0 30px;
+}
+
+.header__item-active{
+    height: 75px;
+    margin-top: 0px;
+    border: 0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: #ececec;
+    
+}
+
+.header__item-active a{ 
+    color: black;
+    font-weight: 700;
+}
