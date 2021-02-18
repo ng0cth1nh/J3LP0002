@@ -1,0 +1,102 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 18, 2021, 10:38:35 PM
+    Author     : Vu Ngoc Thinh
+*/
+
+.app{
+    height: 500px;
+    margin: 0 20px;
+
+}
+
+.top-right{
+    display: flex;
+    margin: 50px 0 20px 0;
+    justify-content: flex-end;
+}
+
+.city-wrapper + .city-wrapper{
+    margin-left: 5px;
+}
+
+.city-label{
+    font-weight: 600;
+}
+
+.to{
+    color:#adadad;
+}
+.location{
+    display: flex;
+    font-size: 18px;
+    font-weight: 600;
+    width: 178px;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 17px;
+    margin: 5px 0 20px 20px;
+}
+.flight-container{
+    margin: 0 30px 0 30px;
+    height: 35%;
+}
+.flight-date{
+    font-weight: 600;
+    color: #fd6d65;
+}
+
+.flight-infor{
+    display: flex;
+    margin: 25px 0px;
+    padding-right: 250px;
+
+}
+
+.flight-time{
+    flex: 2;
+    display: flex;
+}
+
+.flight-price{
+    flex: 1;
+    display: flex;
+    background-color: #333333;
+    color: #f85d41;
+    font-weight: 600;
+    align-items: center;
+    height: 25px;
+    font-size: 14px;
+    margin-top: 17px;
+}
+.circle{
+    border-radius: 50px;
+    background-color: #dedede;
+    width: 12px;
+    height: 12px;
+    border: solid 2px #6e6e6e;
+    margin: 0 5px;
+
+}
+
+.time-wrapper{
+    flex: 1;
+
+}
+
+.flight-label{
+    display: block;
+    margin-bottom: 10px;
+}
+
+.btn-save{
+    margin-left: auto;
+}
+.btn-wrapper{
+    display: flex;
+    justify-content: flex-end;
+}

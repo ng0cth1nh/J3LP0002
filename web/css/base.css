@@ -13,7 +13,10 @@ body,h1,h2,h3,h4,h5,h6,ul{
     padding: 0;
     list-style: none;
     font-family: sans-serif;
-    height: 100vh;
+
+}
+body{
+    min-height: 100vh;
 }
 
 a{
@@ -24,7 +27,7 @@ a{
 .container{
     margin: auto;
     width: 960px;
-    
+
 }
 
 .header-container{
@@ -85,8 +88,8 @@ a{
 
 .header__item{
     border-right: dotted 1px;
-    border-color: #808080;
-    background-color: linear-gradient(to top,#000000,#1a1a1c);
+    border-color: #353535a8;
+    background-image: linear-gradient(#1a1a1c,#000000);
     min-width: 100px;
     height: 66px;
     margin-top: 9px;
@@ -106,11 +109,61 @@ a{
     border: 0;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    background-color: #ececec;
-    
+    background-image: linear-gradient(#fdfdfd, #dedfe1);
+
 }
 
 .header__item-active a{ 
     color: black;
     font-weight: 700;
+}
+
+.form{
+    position: relative;
+}
+
+.btn{
+    display: inline-block;
+    text-decoration: none;
+    border: solid 1px #989a9d;
+    border-top-color: #abd3e4;
+    border-left-color: #abd3e4;
+    color: white;
+    background-image: linear-gradient(#2ec0fd, #3c81ca);
+    height: 25px;
+    border-radius: 2px;
+    border-bottom-right-radius: 5px;
+    padding: 0 20px 0 20px;
+    font-size: 12px;
+    position: absolute;
+    outline: none;
+
+}
+.btn:hover{
+    cursor: pointer;
+}
+
+.hidden{
+    visibility: hidden;
+}
+.error{
+    color: red;
+    font-size: 13px
+}
+.option{
+    min-width: 150px;
+}
+
+
+.form-title{
+    font-size: 30px;
+    color: #ff5c43;
+    text-align: center;
+    margin: 30px 0 20px 0;
+}
+
+.label{
+    font-family: serif;
+    font-size: 20px;
+    color: #ff5737;
 }

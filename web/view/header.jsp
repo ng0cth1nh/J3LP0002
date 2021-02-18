@@ -17,24 +17,24 @@
                 <div class="left">
                     <div class="login">
                         <img class="img-logo login-logo" src="./image/home.png"/>
-                        <a href="" class="text">Login</a>
+                        <a href="/J3LP0002/login" class="text">Login</a>
                     </div>
                     <div class="register">
                         <img class="img-logo " src="./image/register_t.png"/>
-                        <a href="" class="text">Register</a>
+                        <a href="/J3LP0002/register" class="text">Register</a>
                     </div>
                 </div>
             </div>
             <div class="bottom">
                 <ul class="header">
                     <li class="header__item">
-                        <a href="">Home</a>
+                        <a href="/J3LP0002/home">Home</a>
                     </li>
                     <li class="header__item ">
-                        <a href="">Book</a>
+                        <a href="/J3LP0002/booking">Book</a>
                     </li>
                     <li class="header__item header__item-active">
-                        <a href="">Manage Booking</a>
+                        <a href="/J3LP0002/manage-booking">Manage Booking</a>
                     </li>
                 </ul>
             </div>

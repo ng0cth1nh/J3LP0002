@@ -21,11 +21,11 @@
                     <div class="form-top header__item-active">
                         <span>Flight</span>
                     </div>
-                    <form class="form flight-form">
+                    <form class="form flight-form" id="flight-form">
                         <div class="type">
                             <div class="type__item">
                                 <div class="type__item-wrapper">
-                                    <input type="radio" id="round-trip" name="type" value="round-trip">
+                                    <input checked type="radio" id="round-trip" name="type" value="round-trip">
                                     <label for="round-trip">Round trip</label>
                                 </div>
                             </div>
@@ -40,9 +40,9 @@
                         <div class="form-item">
                             <label class="form-label" for="userName">From</label> 
                             <select class="option" name="from" id="from">
-                                <option>Ha Noi</option>
-                                <option>Da Nang</option>
-                                <option>HCM</option>
+                                <option value="hn">Ha Noi</option>
+                                <option value="dn">Da Nang</option>
+                                <option value="hcm">HCM</option>
                             </select>
                    
                         </div>
@@ -50,23 +50,30 @@
                         <div class="form-item">
                             <label class="form-label" for="userName">To</label> 
                             <select class="option" name="to" id="to">
-                                <option>Ha Noi</option>
-                                <option>Da Nang</option>
-                                <option>HCM</option>
+                                <option value="hn">Ha Noi</option>
+                                <option value="dn">Da Nang</option>
+                                <option value="hcm">HCM</option>
                             </select>
                
                         </div>
                         
                         <div class="form-item">
                             <label class="form-label" for="userName">Departure</label> 
-                            <input type="date" id="departure" name="birthday">
+                            <input type="date" class="date" id="departure" name="departure">
                
                         </div>
                         <div class="form-item" id="return-contanier">
                             <label class="form-label" for="userName">Return</label> 
-                            <input type="date" id="return" name="birthday">
-  
+                            <input type="date" class="date" id="return" name="return">
+
                         </div>
+                        <div class="form-item">
+                            <span class="error hidden" id="home-error"></span>
+                            <button type="submit" class="btn btn-search">
+                                Search
+                            </button> 
+                        </div>
+                         
                     </form>
                 </div>
 

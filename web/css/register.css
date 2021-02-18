@@ -1,0 +1,61 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 18, 2021, 6:37:33 PM
+    Author     : Vu Ngoc Thinh
+*/
+
+
+.form-container{
+    width: 40%;
+    height: 830px;
+    margin: auto;
+
+}
+
+.form-item{
+    display: flex;
+    margin: 20px 0 20px 0;
+    flex-wrap: wrap;
+
+}
+
+.form-label{
+    font-size: 15px;
+    min-width: 100px;
+    flex: 1;
+}
+.form-input{
+    flex: 2;
+    font-size: 15px;
+    height: 25px;
+}
+.option{
+    height: 25px;
+    margin-right: 109px;
+}
+.btn-register{
+    align-items: center;
+    margin:15px 0 30px 163px;
+}
+.error{
+    margin: 5px 0 0 136px;
+}
+
+.btn-login{
+    margin-left: 150px;
+    height: 27px;
+
+}
+.login-label{
+    font-size: 30px;
+}
+.btn-link{
+    margin-top: 0;
+    margin-left: 240px;
+    align-items: center;
+    display: flex;
+}

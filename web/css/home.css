@@ -27,7 +27,7 @@ and open the template in the editor.
 
 .form-top{
     width: 100px;
-    height: 50px;
+    height: 40px;
     display: flex;
 }
 .form-top span{
@@ -49,7 +49,7 @@ and open the template in the editor.
 .type{
     display: flex;
     background-color: #f7f7f7;
-    height: 60px;
+    height: 50px;
 }
 .type__item{
     flex: 1;
@@ -61,7 +61,7 @@ and open the template in the editor.
 
 .form-item{
     display: flex;
-    margin: 20px;
+    margin: 15px;
     justify-content: space-between;
 }
 
@@ -73,6 +73,29 @@ and open the template in the editor.
     flex: 3;
 }
 #departure,#return{
-    height: 19px;
-    margin-right: 26px;
+    height: 17px;
+    margin-right: 35px;
+}
+
+#round-trip,#one-way{
+    margin: 0;
+    margin-right: 5px;
+}
+
+.type__item-wrapper{
+    display: flex;
+    align-items: center;
+}
+.btn-search{
+    right: 20px;
+    bottom: 20px;
+}
+#home-error{
+    position: absolute;
+    left: 15px;
+    bottom: 30px;
+    max-width: 160px;
+}
+.date{
+    min-width: 145px;
 }
