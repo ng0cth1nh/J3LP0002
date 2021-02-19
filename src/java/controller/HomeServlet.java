@@ -5,9 +5,8 @@ package controller;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+import dao.CityDao;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,7 +28,7 @@ public class HomeServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -44,6 +43,8 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        CityDao cDao = new CityDao();
+        request.setAttribute("cities", cDao.getCities());
         request.getRequestDispatcher("view/home.jsp").forward(request, response);
     }
 

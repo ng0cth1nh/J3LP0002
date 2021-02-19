@@ -14,6 +14,7 @@ and open the template in the editor.
     height: 830px;
     margin: auto;
 
+
 }
 
 .form-item{
@@ -58,4 +59,20 @@ and open the template in the editor.
     margin-left: 240px;
     align-items: center;
     display: flex;
+}
+
+.mess-container{
+    height: 59px;
+    margin-top: 50px;
+}
+#mess{
+    color: green;
+    font-size: 20px;
+    margin-left: 100px;
+}
+
+#login-a{
+    display: block;
+    margin-left: 160px;
+    margin-top: 18px;
 }

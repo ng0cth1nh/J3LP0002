@@ -5,9 +5,11 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>    
     <body>
+        <c:set var="user" scope="session" value="${sessionScope.user}"/>
         <div class="header-container">
             <div class="top">
                 <div class="right">
@@ -15,14 +17,28 @@
                     <span class="slogan">Fast, Frequent & Safe Flight</span>
                 </div>
                 <div class="left">
-                    <div class="login">
-                        <img class="img-logo login-logo" src="./image/home.png"/>
-                        <a href="/J3LP0002/login" class="text">Login</a>
-                    </div>
-                    <div class="register">
-                        <img class="img-logo " src="./image/register_t.png"/>
-                        <a href="/J3LP0002/register" class="text">Register</a>
-                    </div>
+                    <c:if test="${user!=Empty}">
+                        <div class="login">
+                            <img class="img-logo login-logo" src="./image/user.png"/>
+                            <p class="text">${user.getFirstName()}</p>
+                        </div>
+                        <div class="register">
+                            <img class="img-logo" src="./image/quit_t.png"/>
+                            <a href="/J3LP0002/logout" class="text">Logout</a>
+                        </div>
+                    </c:if>
+
+                    <c:if test="${user==Empty}">
+                        <div class="login">
+                            <img class="img-logo login-logo" src="./image/home1.png"/>
+                            <a href="/J3LP0002/login" class="text">Login</a>
+                        </div>
+                        <div class="register">
+                            <img class="img-logo" src="./image/register_t.png"/>
+                            <a href="/J3LP0002/register" class="text">Register</a>
+                        </div>
+                    </c:if>
+
                 </div>
             </div>
             <div class="bottom">

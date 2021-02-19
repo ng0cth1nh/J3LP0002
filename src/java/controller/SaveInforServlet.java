@@ -5,19 +5,23 @@
  */
 package controller;
 
+import dao.FlightInforDao;
 import java.io.IOException;
+import util.Util;
 import java.sql.Date;
+import java.sql.Time;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.FlightInfor;
 
 /**
  *
  * @author Vu Ngoc Thinh
  */
-public class BookingServlet extends HttpServlet {
+public class SaveInforServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -29,6 +33,7 @@ public class BookingServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -43,7 +48,7 @@ public class BookingServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("view/booking.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -57,6 +62,37 @@ public class BookingServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession(true);
+        FlightInforDao fDao = new FlightInforDao();
+        String type = request.getParameter("type");
+        String from = request.getParameter("from");
+        String to = request.getParameter("to");
+        Date departuringDate = Date.valueOf(request.getParameter("departure"));
+
+        FlightInfor flightInfor = fDao.getFlightInfor(from, to);
+        flightInfor.setTravelDate(departuringDate);
+        Time departTime = Util.generateRandomTime();
+        flightInfor.setDepartTime(departTime);
+        Time arrivalTime = new Time(departTime.getTime() + flightInfor.getHour().getTime());
+        flightInfor.setArrivalTime(arrivalTime);
+
+        session.setAttribute("flightInfor", flightInfor);
+        if (type.equals("round-trip")) {
+            Date returingDate = Date.valueOf(request.getParameter("departure"));
+            FlightInfor flightInfor2 = fDao.getFlightInfor(to, from);
+            flightInfor2.setTravelDate(returingDate);
+            Time departTime2 = Util.generateRandomTime();
+            flightInfor2.setDepartTime(departTime2);
+            Time arrivalTime2 = new Time(departTime2.getTime() + flightInfor2.getHour().getTime());
+            flightInfor2.setArrivalTime(arrivalTime2);
+            session.setAttribute("returningFlightInfor", flightInfor2);
+        }
+        if(session.getAttribute("user")!=null){
+            response.sendRedirect("booking");
+        }else{
+            response.sendRedirect("login");
+        }
+        
 
     }
 

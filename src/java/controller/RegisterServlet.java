@@ -5,12 +5,14 @@
  */
 package controller;
 
+import dao.UserDao;
+import util.Util;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.User;
 
 /**
  *
@@ -57,7 +59,30 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        UserDao uDao = new UserDao();
+        String email = request.getParameter("email");
+        if(uDao.checkExist(email) == null){
+            String pass = request.getParameter("password");
+            String firstName = request.getParameter("first-name");
+            String lastName = request.getParameter("last-name");
+            String address = request.getParameter("address");
+            String phone = request.getParameter("phone");
+            boolean sex = true;
+            if(request.getParameter("sex").equals("female"))
+                sex = false;
+            int age = Integer.parseInt(request.getParameter("age"));
+            String cardNumber = request.getParameter("card-number");
+            String uid = Util.generateRandomID(10);
+            while(uDao.checkIdExisted(uid)){
+                uid = Util.generateRandomID(10);
+            }
+            String mess =  uDao.insertUser(new User(uid, email, pass, firstName, lastName, address, phone, sex, age, cardNumber));
+            request.setAttribute("mess", mess);
+            request.getRequestDispatcher("view/register.jsp").forward(request, response);
+        }else{
+            request.setAttribute("error", "Email has been used!");
+            request.getRequestDispatcher("view/home.jsp").forward(request, response);
+        }
     }
 
     /**

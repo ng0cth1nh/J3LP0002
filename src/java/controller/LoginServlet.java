@@ -5,12 +5,13 @@
  */
 package controller;
 
+import dao.UserDao;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -28,7 +29,7 @@ public class LoginServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -57,7 +58,24 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        HttpSession session = request.getSession(true);
+
+        UserDao udao = new UserDao();
+        String email = request.getParameter("email");
+        String pass = request.getParameter("password");
+        if (udao.checkUserAccount(email, pass) != null) {
+            request.setAttribute("error", udao.checkUserAccount(email, pass));
+            request.getRequestDispatcher("view/login.jsp").forward(request, response);
+        } else {
+            session.setAttribute("user", udao.getUser(email, pass));
+            if (session.getAttribute("flightInfor") != null) {
+                response.sendRedirect("booking");
+            } else {
+                
+                response.sendRedirect("home");
+            }
+        }
+
     }
 
     /**

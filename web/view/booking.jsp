@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,54 +17,54 @@
     <body>
         <div class="container">
             <%@include file="header.jsp"%>
-            <div class="app">
-                <div class="top-right">
-                    <div class="city-wrapper">
-                        <span class="city-label">Departure:</span>
-                        <span class="city">Ha Noi</span>
+            <c:set var="fi" scope="session" value="${sessionScope.flightInfor}"></c:set>
+                <div class="app">
+                    <div class="top-right">
+                        <div class="city-wrapper">
+                            <span class="city-label">Departure:</span>
+                            <span class="city">${fi.getFromName()}</span>
                     </div>
                     <div class="city-wrapper">
                         <span class="city-label">Return:</span>
-                        <span class="city">Da Nang</span>
+                        <span class="city">${fi.getToName()}</span>
                     </div>
                 </div>
-
                 <h1>1.Select Departing Flight</h1>
                 <div class="location">
-                    <h3>Ha Noi</h3>
+                    <h3>${fi.getFromName()}</h3>
                     <span class="to">to</span>
-                    <h3>Da Nang</h3>
+                    <h3>${fi.getToName()}</h3>
                 </div>
                 <div class="flight-container">
-                    <span class="flight-date">09/17/2016</span>
+                    <span class="flight-date">${fi.getTravelDate()}</span>
                     <div class="flight-infor">
                         <div class="flight-time">
                             <div class="time-wrapper">
                                 <span class="flight-label">Departs</span>
-                                <span class="time">04:00PM</span>
+                                <span class="time">${fi.getDepartTime()}</span>
                             </div>
                             <div class="time-wrapper">
                                 <span class="flight-label">Arrives</span>
-                                <span class="time">05:30PM</span>
+                                <span class="time">${fi.getArrivalTime()}</span>
                             </div>
                             <div class="time-wrapper">
                                 <span class="flight-label">Flight Detail</span>
-                                <span class="time">1h30</span>
+                                <span class="time">${fi.getHour()}</span>
                             </div>
                         </div>
                         <div class="flight-price">
                             <span class="circle"></span>
-                            <span class="price">$134.00</span>
+                            <span class="price">${fi.getPrice()}</span>
                         </div>
                     </div>
                     <p class="note">Prices quoted are per adult passenger, in USD. Unless otherwise stated, fares are non refundable, limited changes are permitted charges apply. Please note that this amount excludes fees and taxes.</p>
-                 
+
                 </div>
-                <div class="btn-wrapper">
-                  <button class="btn btn-save">Save</button>   
-                </div>
-                
-                
+                <form method="post" action="/J3LP0002/booking">
+                    <div class="btn-wrapper">
+                        <button type="submit" class="btn btn-save">Save</button>   
+                    </div> 
+                </form>                                  
             </div>
         </div>
 

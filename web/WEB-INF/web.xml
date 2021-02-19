@@ -20,6 +20,14 @@
         <servlet-name>ManageServlet</servlet-name>
         <servlet-class>controller.ManageServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>controller.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SaveInforServlet</servlet-name>
+        <servlet-class>controller.SaveInforServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeServlet</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -39,6 +47,22 @@
     <servlet-mapping>
         <servlet-name>ManageServlet</servlet-name>
         <url-pattern>/manage-booking</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <filter>
+        <filter-name>servletFilter</filter-name>
+        <filter-class>filter.AuthenticationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>servletFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <servlet-mapping>
+        <servlet-name>SaveInforServlet</servlet-name>
+        <url-pattern>/save-infor</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
