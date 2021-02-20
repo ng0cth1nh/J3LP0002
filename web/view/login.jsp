@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,8 +19,13 @@
     <body>
         <div class="container">
             <%@include file="header.jsp"%>
-             <c:set var="error" scope="request" value="${requestScope.error}"/>
+            <c:set var="error" scope="request" value="${requestScope.error}"/>
+            <c:set var="req" value="${pageContext.request}"/>
+            <c:set var="baseURL" value="${fn:replace(req.requestURL, fn:substring(req.requestURI, 1, fn:length(req.requestURI)), req.contextPath)}" />
+           
             <div class="app">
+
+               
                 <div class="form-container">
                     <h1 class="form-title label login-label">Login</h1>
                     <form id="login-form" method="post" action="/J3LP0002/login">
@@ -37,8 +43,8 @@
                         <button type="submit" class="btn btn-login">
                             Login
                         </button> 
-                      <a class="btn-register btn btn-link" href="/J3LP0002/register">Register</a>
-                   </form>
+                        <a class="btn-register btn btn-link" href="/J3LP0002/register">Register</a>
+                    </form>
                 </div>
             </div>
         </div>

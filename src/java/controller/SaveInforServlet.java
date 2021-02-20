@@ -10,6 +10,7 @@ import java.io.IOException;
 import util.Util;
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalTime;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -71,28 +72,37 @@ public class SaveInforServlet extends HttpServlet {
 
         FlightInfor flightInfor = fDao.getFlightInfor(from, to);
         flightInfor.setTravelDate(departuringDate);
-        Time departTime = Util.generateRandomTime();
+        LocalTime departTime = Util.generateRandomTime();
         flightInfor.setDepartTime(departTime);
-        Time arrivalTime = new Time(departTime.getTime() + flightInfor.getHour().getTime());
+
+        LocalTime arrivalTime = departTime.plusHours((long) flightInfor.getHour().getHour());
+        arrivalTime = arrivalTime.plusMinutes((long) flightInfor.getHour().getMinute());
         flightInfor.setArrivalTime(arrivalTime);
 
         session.setAttribute("flightInfor", flightInfor);
+        session.setAttribute("type", type);
+        
         if (type.equals("round-trip")) {
-            Date returingDate = Date.valueOf(request.getParameter("departure"));
-            FlightInfor flightInfor2 = fDao.getFlightInfor(to, from);
-            flightInfor2.setTravelDate(returingDate);
-            Time departTime2 = Util.generateRandomTime();
-            flightInfor2.setDepartTime(departTime2);
-            Time arrivalTime2 = new Time(departTime2.getTime() + flightInfor2.getHour().getTime());
-            flightInfor2.setArrivalTime(arrivalTime2);
-            session.setAttribute("returningFlightInfor", flightInfor2);
+            Date returingDate = Date.valueOf(request.getParameter("return"));
+
+            FlightInfor returningFlightInfor = fDao.getFlightInfor(to, from);
+            returningFlightInfor.setTravelDate(returingDate);
+
+            LocalTime returningDepartTime = Util.generateRandomTime();
+
+            returningFlightInfor.setDepartTime(returningDepartTime);
+
+            LocalTime returningArrivalTime = returningDepartTime.plusHours((long) returningFlightInfor.getHour().getHour());
+            returningArrivalTime = returningArrivalTime.plusMinutes((long) returningFlightInfor.getHour().getMinute());
+            returningFlightInfor.setArrivalTime(returningArrivalTime);
+
+            session.setAttribute("returningFlightInfor", returningFlightInfor);
         }
-        if(session.getAttribute("user")!=null){
+        if (session.getAttribute("user") != null) {
             response.sendRedirect("booking");
-        }else{
+        } else {
             response.sendRedirect("login");
         }
-        
 
     }
 

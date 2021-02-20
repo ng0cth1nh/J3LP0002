@@ -39,16 +39,16 @@ public class AuthenticationFilter implements Filter {
 
         String url = req.getRequestURI();
 
-        if (url.contains("/booking")
-                || url.contains("/manage-booking")) {
+        if (url.contains("booking")
+                || url.contains("manage-booking")) {
             User user = (User) session.getAttribute("user");
             if (user != null) {
-                chain.doFilter(request, response);
+                chain.doFilter(req, res);
             } else {
                 res.sendRedirect("login");
             }
         } else {
-            chain.doFilter(request, response);
+            chain.doFilter(req, res);
         }
     }
 

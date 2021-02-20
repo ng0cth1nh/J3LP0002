@@ -5,8 +5,15 @@
  */
 package util;
 
+import java.sql.Date;
 import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.Random;
+import javax.swing.text.DateFormatter;
 
 /**
  *
@@ -14,7 +21,7 @@ import java.util.Random;
  */
 public class Util {
 
-    private static final Random rand = new Random();
+    public static final Random rand = new Random();
 
     public static String generateRandomID(int length) {
         String str = "abcdefghijklmnopqrstuvwxyz0123456789";
@@ -24,12 +31,43 @@ public class Util {
         }
         return sb.toString();
     }
-
-    public static Time generateRandomTime() {
+    
+    public static LocalTime parseTime(Time time){
+       return LocalTime.parse((CharSequence) time.toString());
+    }
+    
+    
+    public static String formatLocalTime(LocalTime time){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a", Locale.ENGLISH);
+        String now = time.format(formatter);
+        return now;
+    }
+    
+    
+    public static String formatDate(Date date){
+        String pattern = "MM/dd/yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);      
+        return simpleDateFormat.format(date);
+    }
+    
+     public static String formatDateTime(Date date){
+        String pattern = "MM/dd/yyyy HH:mm:ss";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);      
+        return simpleDateFormat.format(date);
+    }
+    
+    public static LocalTime generateRandomTime() {
         
         final int millisInDay = 24 * 60 * 60 * 1000;
         final long randMil = (long) rand.nextInt(millisInDay);
-        return new Time((long) Math.floor(randMil / 600000) * 600000);
+        return parseTime(new Time((long) Math.floor(randMil / 600000) * 600000));
         
     }
+    
+    public static void main(String[] args) {
+       // Time t = generateRandomTime();
+      //  System.out.println("time = " + parseTime(t));
+    }
+    
+    
 }

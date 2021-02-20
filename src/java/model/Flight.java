@@ -6,6 +6,7 @@
 package model;
 
 import java.sql.Date;
+import util.Util;
 
 
 /**
@@ -50,6 +51,10 @@ public class Flight {
 
     public Date getIssueDate() {
         return issueDate;
+    }
+    
+    public String getIssueDateTimeString() {     
+        return Util.formatDateTime(issueDate);
     }
 
     public void setIssueDate(Date issueDate) {

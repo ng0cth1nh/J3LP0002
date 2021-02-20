@@ -29,7 +29,7 @@ public class DBContext {
     public DBContext() {
         try {
             init = new InitialContext();
-            context = (Context) init.lookup("java:comp/env");
+            context = ((Context) init.lookup("java:comp/env"));
 
             serverName = context.lookup("serverName").toString();
             dbName = context.lookup("dbName").toString();
@@ -51,4 +51,5 @@ public class DBContext {
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
 }

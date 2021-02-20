@@ -45,21 +45,21 @@
                             </div>
                             <div class="form-item">
                                 <label class="form-label" for="password">Password :</label> 
-                                <input class="form-input" required type="password" id="password" value="${param.password}" name="password">
+                                <input class="form-input" required type="password" id="password" name="password">
                             </div>
                             <div class="form-item">
                                 <label class="form-label" for="re-password">Verify Password :</label> 
-                                <input class="form-input" required type="password"  id="re-password" value="${param.re-password}" name="re-password">
+                                <input class="form-input" required type="password"  id="re-password" name="re-password">
                                 <span class="error hidden" id="error-pass"></span>
                             </div>
                             <h4 class="label">Contact Information</h4>
                             <div class="form-item">
                                 <label class="form-label" for="first-name">First Name :</label> 
-                                <input class="form-input" required type="text" id="first-name" value="${param.first-name}" name="first-name">
+                                <input class="form-input" required type="text" id="first-name" value="${param.firstName}" name="firstName">
                             </div>
                             <div class="form-item">
                                 <label class="form-label" for="last-name">Last Name :</label> 
-                                <input class="form-input" required type="text" id="last-name" value="${param.last-name}" name="last-name">
+                                <input class="form-input" required type="text" id="last-name" value="${param.lastName}" name="lastName">
                             </div>
                             <div class="form-item">
                                 <label class="form-label" for="address">Address :</label> 
@@ -83,7 +83,7 @@
                             </div>
                             <div class="form-item">
                                 <label class="form-label" for="card-number">Card Number :</label> 
-                                <input class="form-input" required type="text" value="${param.card-number}" id="card-number" name="card-number">
+                                <input class="form-input" required type="text" value="${param.cardNumber}" id="card-number" name="cardNumber">
                                 <span class="error hidden" id="error-card"></span>
                             </div>
                             <button type="submit" class="btn btn-register">

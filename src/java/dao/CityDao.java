@@ -32,7 +32,7 @@ public class CityDao extends DBContext {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(FlightDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CityDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return cities;
     }

@@ -5,6 +5,7 @@
  */
 package controller;
 
+import dao.FlightDao;
 import java.io.IOException;
 import java.sql.Date;
 import javax.servlet.ServletException;
@@ -12,6 +13,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Flight;
+import model.FlightInfor;
+import model.User;
+import util.Util;
 
 /**
  *
@@ -57,6 +62,47 @@ public class BookingServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        FlightDao fDao = new FlightDao();
+        HttpSession session = request.getSession();
+
+        User u = (User) session.getAttribute("user");
+        String type = (String) session.getAttribute("type");
+
+        FlightInfor flightInfor = (FlightInfor) session.getAttribute("flightInfor");
+        String fid = Util.generateRandomID(10);
+        String code = Util.generateRandomID(6).toUpperCase();
+        while (fDao.checkCodeExist(code) || fDao.checkIdExist(fid)) {
+            if (fDao.checkCodeExist(code)) {
+                code = Util.generateRandomID(6).toUpperCase();
+            }
+            if (fDao.checkIdExist(fid)) {
+                fid = Util.generateRandomID(10);
+            }
+        }
+        long millis = System.currentTimeMillis();
+        Date issueDate = new Date(millis);
+        boolean isOneway = true;
+        
+        
+        if (type.equals("round-trip")) {
+            isOneway = false;
+            FlightInfor returningFlightInfor = (FlightInfor) session.getAttribute("returningFlightInfor");
+            String reFid = Util.generateRandomID(10);
+            String reCode = Util.generateRandomID(6).toUpperCase();
+            while (fDao.checkCodeExist(reCode) || fDao.checkIdExist(reFid)) {
+                if (fDao.checkCodeExist(reCode)) {
+                    reCode = Util.generateRandomID(6).toUpperCase();
+                }
+                if (fDao.checkIdExist(reFid)) {
+                    reFid = Util.generateRandomID(10);
+                }
+            }
+            Flight reFlight = new Flight(reFid, reCode, issueDate, isOneway, returningFlightInfor);
+            fDao.insertFlight(reFlight, u.getId());
+        }
+        Flight f = new Flight(fid, code, issueDate, isOneway, flightInfor);
+        fDao.insertFlight(f, u.getId());
+        response.sendRedirect("manage-booking");
 
     }
 

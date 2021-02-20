@@ -9,9 +9,12 @@ import context.DBContext;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.time.LocalTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.FlightInfor;
+import util.Util;
 
 /**
  *
@@ -28,18 +31,27 @@ public class FlightInforDao extends DBContext {
             st.setString(2, to);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                return new FlightInfor(rs.getString("fiid"),
+                return new FlightInfor(
+                        rs.getString("fiid"),
                         rs.getString("from"),
                         rs.getString("to"),
                         rs.getString("departName"),
                         rs.getString("returnName"),
                         rs.getFloat("price"),
-                        rs.getTime("hour"));
+                        Util.parseTime(rs.getTime("hour")));
+
+                // return rs.getTime("hour");
             }
 
         } catch (SQLException ex) {
             Logger.getLogger(FlightInforDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    public static void main(String[] args) {
+        FlightInforDao fi = new FlightInforDao();
+        LocalTime time = LocalTime.parse((CharSequence) fi.getFlightInfor("HAN", "DAD").toString());
+        System.out.println("Time = " + time);
     }
 }

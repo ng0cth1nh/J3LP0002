@@ -5,12 +5,16 @@
  */
 package controller;
 
+import dao.FlightDao;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.Flight;
+import model.User;
 
 /**
  *
@@ -28,7 +32,7 @@ public class ManageServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -43,7 +47,7 @@ public class ManageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       request.getRequestDispatcher("view/manage-booking.jsp").forward(request, response);
+        request.getRequestDispatcher("view/searching.jsp").forward(request, response);
     }
 
     /**
@@ -57,7 +61,27 @@ public class ManageServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession();
+        User u = (User) session.getAttribute("user");
+        FlightDao fDao = new FlightDao();
+        String type = request.getParameter("type");
+        if (type.equals("all")) {
+            ArrayList<Flight> flights = fDao.getAllFlight(u.getId());
+            request.setAttribute("flights", flights);
+            request.getRequestDispatcher("view/manage-booking.jsp").forward(request, response);
+        } else {
+            String reserCode = request.getParameter("reserCode");
+            if (fDao.getFlight(u.getId(), reserCode) != null) {
+                Flight flight = fDao.getFlight(u.getId(), reserCode);
+                request.setAttribute("flight", flight);
+                request.getRequestDispatcher("view/manage-booking.jsp").forward(request, response);
+            } else {
+                String error = "Incorrect code";
+                request.setAttribute("error", error);
+                request.getRequestDispatcher("view/searching.jsp").forward(request, response);
+            }
+
+        }
     }
 
     /**

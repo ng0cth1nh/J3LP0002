@@ -17,6 +17,11 @@ body,h1,h2,h3,h4,h5,h6,ul{
 }
 body{
     min-height: 100vh;
+    
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 a{
@@ -27,6 +32,7 @@ a{
 .container{
     margin: auto;
     width: 960px;
+    
 
 }
 
@@ -51,12 +57,12 @@ a{
 .login,.register{
     display: grid;
     flex: 1;
-    margin-bottom: 40px;
+    margin-bottom: 32px;
 }
 
 .login{
     margin-right: 30px;
-    margin-top: 7px;
+    margin-top: 4px;
 }
 .text{
     color: white;
@@ -75,8 +81,8 @@ a{
     color: #c4c4c4;
 }
 .login-logo{
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
 }
 
 .header{

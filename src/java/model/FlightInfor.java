@@ -6,7 +6,9 @@
 package model;
 
 import java.sql.Date;
-import java.sql.Time;
+import java.time.LocalTime;
+import util.Util;
+
 
 /**
  *
@@ -20,16 +22,16 @@ public class FlightInfor {
     private String fromName;
     private String toName;
     private float price;
-    private Time hour;
+    private LocalTime hour;
     private Date travelDate;
-    private Time departTime;
-    private Time arrivalTime;
+    private LocalTime departTime;
+    private LocalTime arrivalTime;
 
     public FlightInfor() {
     }
 
     public FlightInfor(String id, String fromId, String toId,
-            String fromName, String toName, float price, Time hour) {
+            String fromName, String toName, float price, LocalTime hour) {
         this.id = id;
         this.fromId = fromId;
         this.toId = toId;
@@ -40,8 +42,8 @@ public class FlightInfor {
     }
 
     public FlightInfor(String id, String fromId, String toId,
-            String fromName, String toName, float price, Time hour,
-            Date travelDate, Time departTime, Time arrivalTime) {
+            String fromName, String toName, float price, LocalTime hour,
+            Date travelDate, LocalTime departTime, LocalTime arrivalTime) {
         this.id = id;
         this.fromId = fromId;
         this.toId = toId;
@@ -57,24 +59,40 @@ public class FlightInfor {
     public Date getTravelDate() {
         return travelDate;
     }
+    
+    public String getTravelDateString() {
+        return Util.formatDate(travelDate);
+    }
+    
+    public String getTravelDateTimeString() {
+        return Util.formatDateTime(travelDate);
+    }
 
     public void setTravelDate(Date travelDate) {
         this.travelDate = travelDate;
     }
 
-    public Time getDepartTime() {
+    public LocalTime getDepartTime() {
         return departTime;
     }
+    
+    public String getDepartTimeString() {
+        return Util.formatLocalTime(departTime);
+    }
 
-    public void setDepartTime(Time departTime) {
+    public void setDepartTime(LocalTime departTime) {
         this.departTime = departTime;
     }
 
-    public Time getArrivalTime() {
+    public LocalTime getArrivalTime() {
         return arrivalTime;
     }
+    
+    public String getArrivalTimeString() {
+        return Util.formatLocalTime(arrivalTime);
+    }
 
-    public void setArrivalTime(Time arrivalTime) {
+    public void setArrivalTime(LocalTime arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
 
@@ -121,16 +139,25 @@ public class FlightInfor {
     public float getPrice() {
         return price;
     }
+    
+    public String getPriceFormat() {
+        return String.format("%.2f", price);
+    }
 
     public void setPrice(float price) {
         this.price = price;
     }
 
-    public Time getHour() {
+    public LocalTime getHour() {
         return hour;
     }
+    
+    public String getHourString() {
+        String minuteFormated = String.format("%02d", hour.getMinute());
+        return hour.getHour() + "h" + minuteFormated;
+    }
 
-    public void setHour(Time hour) {
+    public void setHour(LocalTime hour) {
         this.hour = hour;
     }
 

@@ -6,11 +6,12 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="url" value="${requestScope['javax.servlet.forward.servlet_path']}"/>
 <!DOCTYPE html>
 <html>    
     <body>
         <c:set var="user" scope="session" value="${sessionScope.user}"/>
-        <div class="header-container">
+        <div class="header-container">  
             <div class="top">
                 <div class="right">
                     <img class="logo" src="./image/logo.png"/>
@@ -43,17 +44,18 @@
             </div>
             <div class="bottom">
                 <ul class="header">
-                    <li class="header__item">
+                    <li id="home" class="header__item">
                         <a href="/J3LP0002/home">Home</a>
                     </li>
-                    <li class="header__item ">
+                    <li id="booking" class="header__item">
                         <a href="/J3LP0002/booking">Book</a>
                     </li>
-                    <li class="header__item header__item-active">
+                    <li id="manage" class="header__item">
                         <a href="/J3LP0002/manage-booking">Manage Booking</a>
                     </li>
                 </ul>
             </div>
         </div>
+        <script src="script/script.js" type="text/javascript"></script>
     </body>
 </html>

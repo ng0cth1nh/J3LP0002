@@ -35,7 +35,7 @@ and open the template in the editor.
     display: flex;
     font-size: 18px;
     font-weight: 600;
-    width: 178px;
+    width: 190px;
     justify-content: space-between;
     align-items: center;
     margin-left: 17px;
@@ -95,8 +95,15 @@ and open the template in the editor.
 
 .btn-save{
     margin-left: auto;
+    margin-bottom: 60px;
 }
 .btn-wrapper{
     display: flex;
     justify-content: flex-end;
+    height: 100px;
+}
+
+.no-booking{
+    margin-top: 50px;
+    font-size: 22px;
 }

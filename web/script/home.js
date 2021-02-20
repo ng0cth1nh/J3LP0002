@@ -34,9 +34,6 @@ departureDate.onclick = function () {
 }
 
 
-
-
-
 oneWayInput.onclick = function () {
     returnContainer.classList.add("hidden");
     homeError.classList.add("hidden");

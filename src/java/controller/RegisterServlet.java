@@ -30,7 +30,7 @@ public class RegisterServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+        response.setContentType("text/html;charset=UTF-8");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -61,27 +61,28 @@ public class RegisterServlet extends HttpServlet {
             throws ServletException, IOException {
         UserDao uDao = new UserDao();
         String email = request.getParameter("email");
-        if(uDao.checkExist(email) == null){
+        if (uDao.checkExist(email) == null) {
             String pass = request.getParameter("password");
-            String firstName = request.getParameter("first-name");
-            String lastName = request.getParameter("last-name");
+            String firstName = request.getParameter("firstName");
+            String lastName = request.getParameter("lastName");
             String address = request.getParameter("address");
             String phone = request.getParameter("phone");
             boolean sex = true;
-            if(request.getParameter("sex").equals("female"))
+            if (request.getParameter("sex").equals("female")) {
                 sex = false;
+            }
             int age = Integer.parseInt(request.getParameter("age"));
-            String cardNumber = request.getParameter("card-number");
+            String cardNumber = request.getParameter("cardNumber");
             String uid = Util.generateRandomID(10);
-            while(uDao.checkIdExisted(uid)){
+            while (uDao.checkIdExisted(uid)) {
                 uid = Util.generateRandomID(10);
             }
-            String mess =  uDao.insertUser(new User(uid, email, pass, firstName, lastName, address, phone, sex, age, cardNumber));
+            String mess = uDao.insertUser(new User(uid, email, pass, firstName, lastName, address, phone, sex, age, cardNumber));
             request.setAttribute("mess", mess);
             request.getRequestDispatcher("view/register.jsp").forward(request, response);
-        }else{
+        } else {
             request.setAttribute("error", "Email has been used!");
-            request.getRequestDispatcher("view/home.jsp").forward(request, response);
+            request.getRequestDispatcher("view/register.jsp").forward(request, response);
         }
     }
 
